@@ -1,5 +1,6 @@
 package matche
 
+// 各試合の構造体
 type Matche struct {
 	MatcheNum int
 	TeamA     string
@@ -7,6 +8,7 @@ type Matche struct {
 	Winner    string
 }
 
+// 各競技ごとの管理をする構造体
 type Manager struct {
 	Matches []Matche
 	InCourt struct {
@@ -17,4 +19,5 @@ type Manager struct {
 		CourtA string
 		CourtB string
 	}
+	Layer []int
 }

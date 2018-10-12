@@ -12,7 +12,9 @@ var (
 
 // InitMatche 試合の準備を行う
 func InitMatche(teams []string) {
-	dodge.Matches = matche.UpdateFirstLayer(teams)
-	dodge.Matches = matche.UpdateSecondLayer(teams, dodge.Matches)
+	matches, layer := matche.UpdateFirstLayer(teams)
+	dodge.Matches = matches
+	dodge.Layer = append(dodge.Layer, layer)
+	dodge.Matches = matche.UpdateSecondLayer(teams, dodge.Matches, dodge.Layer[0])
 	fmt.Print(dodge.Matches)
 }

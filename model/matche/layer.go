@@ -1,7 +1,7 @@
 package matche
 
 // UpdateFirstLayer トーナメント表の第1層の計算を行う
-func UpdateFirstLayer(teams []string) []Matche {
+func UpdateFirstLayer(teams []string) ([]Matche, int) {
 	matchNum := len(teams) - 1
 	matches := make([]Matche, matchNum)
 	matchCount := 0
@@ -23,19 +23,13 @@ func UpdateFirstLayer(teams []string) []Matche {
 
 		}
 	}
-	return matches
+	return matches, matchCount
 }
 
 // UpdateSecondLayer トーナメント表の第2層の計算を行う
-func UpdateSecondLayer(teams []string, matches []Matche) []Matche {
+func UpdateSecondLayer(teams []string, matches []Matche, firstLayerCount int) []Matche {
 	matchNum := len(teams) - 1
-	matchCount := 0
-
-	for i := 0; i < matchNum; i += 1 {
-		if matches[i].TeamA != "" {
-			matchCount += 1
-		}
-	}
+	matchCount := firstLayerCount
 
 	for i := 0; i < matchNum; i += 4 {
 		if (teams[i+1] == "") != (teams[i+2] == "") {

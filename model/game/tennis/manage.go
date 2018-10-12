@@ -12,7 +12,9 @@ var (
 
 // InitMatche 試合の準備を行う
 func InitMatche(teams []string) {
-	tennis.Matches = matche.UpdateFirstLayer(teams)
-	tennis.Matches = matche.UpdateSecondLayer(teams, tennis.Matches)
+	matches, layer := matche.UpdateFirstLayer(teams)
+	tennis.Matches = matches
+	tennis.Layer = append(tennis.Layer, layer)
+	tennis.Matches = matche.UpdateSecondLayer(teams, tennis.Matches, tennis.Layer[0])
 	fmt.Print(tennis.Matches)
 }
