@@ -32,6 +32,8 @@ var routeAPI = []Route{
 // startServer サーバーを起動する
 func startServer(sock bool) {
 	e := echo.New()
+	e.HideBanner = true
+
 	// unix sockでlistenするか
 	if sock {
 		os.Remove("/tmp/echo.sock")

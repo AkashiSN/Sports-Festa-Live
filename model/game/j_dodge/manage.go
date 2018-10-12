@@ -16,5 +16,12 @@ func InitMatche(teams []string) {
 	j_dodge.Matches = matches
 	j_dodge.Layer = append(j_dodge.Layer, layer)
 	j_dodge.Matches = matche.UpdateSecondLayer(teams, j_dodge.Matches, j_dodge.Layer[0])
-	fmt.Print(j_dodge.Matches)
+	j_dodge.CurrentLayer = 0
+	fmt.Println("j_dodge")
+	for _, matche := range j_dodge.Matches {
+		if matche.MatcheNum == 0 && matche.TeamA == "" {
+			break
+		}
+		fmt.Printf("No.%d \"%s\" VS \"%s\"\n", matche.MatcheNum, matche.TeamA, matche.TeamB)
+	}
 }

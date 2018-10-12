@@ -16,5 +16,12 @@ func InitMatche(teams []string) {
 	softball.Matches = matches
 	softball.Layer = append(softball.Layer, layer)
 	softball.Matches = matche.UpdateSecondLayer(teams, softball.Matches, softball.Layer[0])
-	fmt.Print(softball.Matches)
+	softball.CurrentLayer = 0
+	fmt.Println("softball")
+	for _, matche := range softball.Matches {
+		if matche.MatcheNum == 0 && matche.TeamA == "" {
+			break
+		}
+		fmt.Printf("No.%d \"%s\" VS \"%s\"\n", matche.MatcheNum, matche.TeamA, matche.TeamB)
+	}
 }

@@ -16,5 +16,12 @@ func InitMatche(teams []string) {
 	badminton.Matches = matches
 	badminton.Layer = append(badminton.Layer, layer)
 	badminton.Matches = matche.UpdateSecondLayer(teams, badminton.Matches, badminton.Layer[0])
-	fmt.Print(badminton.Matches)
+	badminton.CurrentLayer = 0
+	fmt.Println("badminton")
+	for _, matche := range badminton.Matches {
+		if matche.MatcheNum == 0 && matche.TeamA == "" {
+			break
+		}
+		fmt.Printf("No.%d \"%s\" VS \"%s\"\n", matche.MatcheNum, matche.TeamA, matche.TeamB)
+	}
 }

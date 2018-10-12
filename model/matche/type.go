@@ -10,7 +10,10 @@ type Matche struct {
 
 // 各競技ごとの管理をする構造体
 type Manager struct {
-	Matches []Matche
+	Matches      []Matche
+	Layer        []int
+	CurrentLayer int
+
 	InCourt struct {
 		CourtA string
 		CourtB string
@@ -19,5 +22,4 @@ type Manager struct {
 		CourtA string
 		CourtB string
 	}
-	Layer []int
 }
