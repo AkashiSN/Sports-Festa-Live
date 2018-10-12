@@ -45,7 +45,7 @@ func UpdateSecondLayer(teams []string, matches []Matche, firstLayerCount int) []
 				matches[matchCount].TeamB = teams[i+3]
 				matchCount += 1
 			}
-		} else {
+		} else if !(teams[i+1] == "" && teams[i+2] == "") {
 			matches[matchCount].MatcheNum = matchCount
 			matches[matchCount].TeamA = matches[i/4].Winner
 			matches[matchCount].TeamB = matches[i/4+2].Winner
