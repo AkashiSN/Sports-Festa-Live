@@ -4,7 +4,7 @@ import (
 	"github.com/AkashiSN/Sports-Festa-Live/model/matche"
 )
 
-type Basketball struct {
+type Manager struct {
 	Matches []matche.Matche
 	Queue   struct {
 		courtA string

@@ -7,7 +7,7 @@ import (
 )
 
 func Manage(teams []string) {
-	var dodge Dodge
+	var dodge Manager
 	dodge.Matches = matche.InitMatch(teams)
 	dodge.Matches = matche.UpdateSecondLayer(teams, dodge.Matches)
 	fmt.Print(dodge.Matches)

@@ -7,7 +7,7 @@ import (
 )
 
 func Manage(teams []string) {
-	var tennis Tennis
+	var tennis Manager
 	tennis.Matches = matche.InitMatch(teams)
 	tennis.Matches = matche.UpdateSecondLayer(teams, tennis.Matches)
 	fmt.Print(tennis.Matches)
