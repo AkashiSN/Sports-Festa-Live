@@ -30,6 +30,7 @@ func main() {
 	os.Exit(code)
 }
 
+// catchSignal SIGINTをキャッチする
 func catchSignal(c chan int) {
 	signalChan := make(chan os.Signal, 1)
 	signal.Notify(signalChan, syscall.SIGINT)
