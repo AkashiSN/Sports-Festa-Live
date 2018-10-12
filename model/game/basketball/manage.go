@@ -6,8 +6,11 @@ import (
 	"github.com/AkashiSN/Sports-Festa-Live/model/matche"
 )
 
+var (
+	basketball matche.Manager
+)
+
 func Manage(teams []string) {
-	var basketball Manager
 	basketball.Matches = matche.InitMatch(teams)
 	basketball.Matches = matche.UpdateSecondLayer(teams, basketball.Matches)
 	fmt.Print(basketball.Matches)

@@ -6,3 +6,11 @@ type Matche struct {
 	TeamB     string
 	Winner    string
 }
+
+type Manager struct {
+	Matches []Matche
+	Queue   struct {
+		courtA string
+		courtB string
+	}
+}
