@@ -10,8 +10,9 @@ var (
 	dodge matche.Manager
 )
 
-func Manage(teams []string) {
-	dodge.Matches = matche.InitMatch(teams)
+// InitMatche 試合の準備を行う
+func InitMatche(teams []string) {
+	dodge.Matches = matche.UpdateFirstLayer(teams)
 	dodge.Matches = matche.UpdateSecondLayer(teams, dodge.Matches)
 	fmt.Print(dodge.Matches)
 }

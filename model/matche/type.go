@@ -9,8 +9,12 @@ type Matche struct {
 
 type Manager struct {
 	Matches []Matche
-	Queue   struct {
-		courtA string
-		courtB string
+	InCourt struct {
+		CourtA string
+		CourtB string
+	}
+	Queue struct {
+		CourtA string
+		CourtB string
 	}
 }

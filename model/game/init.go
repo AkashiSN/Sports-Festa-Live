@@ -13,14 +13,14 @@ import (
 	"github.com/AkashiSN/Sports-Festa-Live/model/team"
 )
 
-func GameStart(team team.Team) {
-	badminton.Manage(team.Badminton)
-	basketball.Manage(team.Basketball)
-	dodge.Manage(team.Dodge)
-	j_dodge.Manage(team.J_dodge)
-	j_volleyball.Manage(team.J_volleyball)
-	soccer.Manage(team.Soccer)
-	softball.Manage(team.Softball)
-	tabletennis.Manage(team.Tabletennis)
-	tennis.Manage(team.Tennis)
+func InitMatche(team team.Team) {
+	badminton.InitMatche(team.Badminton)
+	basketball.InitMatche(team.Basketball)
+	dodge.InitMatche(team.Dodge)
+	j_dodge.InitMatche(team.J_dodge)
+	j_volleyball.InitMatche(team.J_volleyball)
+	soccer.InitMatche(team.Soccer)
+	softball.InitMatche(team.Softball)
+	tabletennis.InitMatche(team.Tabletennis)
+	tennis.InitMatche(team.Tennis)
 }

@@ -10,8 +10,9 @@ var (
 	tabletennis matche.Manager
 )
 
-func Manage(teams []string) {
-	tabletennis.Matches = matche.InitMatch(teams)
+// InitMatche 試合の準備を行う
+func InitMatche(teams []string) {
+	tabletennis.Matches = matche.UpdateFirstLayer(teams)
 	tabletennis.Matches = matche.UpdateSecondLayer(teams, tabletennis.Matches)
 	fmt.Print(tabletennis.Matches)
 }

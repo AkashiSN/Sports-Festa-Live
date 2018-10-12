@@ -10,8 +10,9 @@ var (
 	j_volleyball matche.Manager
 )
 
-func Manage(teams []string) {
-	j_volleyball.Matches = matche.InitMatch(teams)
+// InitMatche 試合の準備を行う
+func InitMatche(teams []string) {
+	j_volleyball.Matches = matche.UpdateFirstLayer(teams)
 	j_volleyball.Matches = matche.UpdateSecondLayer(teams, j_volleyball.Matches)
 	fmt.Print(j_volleyball.Matches)
 }

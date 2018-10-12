@@ -10,8 +10,9 @@ var (
 	softball matche.Manager
 )
 
-func Manage(teams []string) {
-	softball.Matches = matche.InitMatch(teams)
+// InitMatche 試合の準備を行う
+func InitMatche(teams []string) {
+	softball.Matches = matche.UpdateFirstLayer(teams)
 	softball.Matches = matche.UpdateSecondLayer(teams, softball.Matches)
 	fmt.Print(softball.Matches)
 }

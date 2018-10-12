@@ -21,7 +21,7 @@ func main() {
 	}
 
 	team := team.LoadTeam()
-	game.GameStart(team)
+	game.InitMatche(team)
 
 	quit := make(chan int)
 	go catchSignal(quit)
