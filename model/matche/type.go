@@ -1,16 +1,24 @@
 package matche
 
-// 各試合の構造体
-type Matche struct {
-	MatcheNum int
-	TeamA     string
-	TeamB     string
-	Winner    string
+// Team チームの構造体
+type Team struct {
+	Name   string
+	ChildX int
+	ChildY int
 }
 
-// 各競技ごとの管理をする構造体
+// Matche 各試合の構造体
+type Matche struct {
+	MatcheNum int
+	TeamA     Team
+	TeamB     Team
+	Winner    string
+	IsSeed    bool
+}
+
+// Manager 各競技ごとの管理をする構造体
 type Manager struct {
-	Matches      []Matche
+	Matches      [][]Matche
 	Layer        []int
 	CurrentLayer int
 
