@@ -8,7 +8,7 @@ import (
 
 // LoadTeam チーム情報を読み込む
 func LoadTeam() Team {
-	bytes, err := ioutil.ReadFile("team.json")
+	bytes, err := ioutil.ReadFile("conf/team.json")
 	if err != nil {
 		log.Fatal(err)
 	}
