@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/AkashiSN/Sports-Festa-Live/view"
-
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 )
 
 // 各メソッドの定義
@@ -26,13 +26,25 @@ type Route struct {
 
 // APIのルーティングの指定
 var routeAPI = []Route{
-	{GET, "/api/game", view.GetGame},
+	{PUT, "/api/game", view.GetGame},
 }
+
+// corsで許可するアドレス
+var debugURL = []string{"http://localhost:8080"}
 
 // startServer サーバーを起動する
 func startServer(sock bool) {
 	e := echo.New()
 	e.HideBanner = true
+	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
+		Format: "method=${method}, uri=${uri}, status=${status}\n",
+	}))
+
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins:     debugURL,
+		AllowMethods:     []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE, echo.OPTIONS},
+		AllowCredentials: true,
+	}))
 
 	// unix sockでlistenするか
 	if sock {
@@ -64,5 +76,5 @@ func startServer(sock bool) {
 	}
 
 	e.Static("/", "static")
-	e.Logger.Fatal(e.Start(""))
+	e.Start("")
 }
