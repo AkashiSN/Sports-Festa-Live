@@ -43,7 +43,7 @@ func InitGraph(teams []string) [][]Match {
 	// 試合番号を振る
 	matchCount := 1
 	// トーナメント表の第1層について
-	for i := 0; i < int(math.Pow(2, float64(LayerCount-1)))-3; i += 4 {
+	for i := 0; i < len(graph[LayerCount-1])-3; i += 4 {
 		for j := i; j < i+3; j++ {
 			if teams[j] == "" && teams[j+1] == "" {
 				graph[LayerCount-2][j/2].MatchNum = matchCount
@@ -58,7 +58,7 @@ func InitGraph(teams []string) [][]Match {
 	}
 	// トーナメント表の第2層について
 	count := 0
-	for i := 0; i < int(math.Pow(2, float64(LayerCount-1)))-3; i += 4 {
+	for i := 0; i < len(graph[LayerCount-1])-3; i += 4 {
 		if (teams[i+1] == "") != (teams[i+2] == "") {
 			if teams[i+1] == "" {
 				graph[LayerCount-3][count].MatchNum = matchCount
@@ -101,7 +101,7 @@ func InitGraph(teams []string) [][]Match {
 	}
 
 	// トーナメント表の第2層について更新する
-	for i := 0; i < int(math.Pow(2, float64(LayerCount-3))); i++ {
+	for i := 0; i < len(graph[LayerCount-3]); i++ {
 		xa := graph[LayerCount-3][i].TeamA.ChildX
 		ya := graph[LayerCount-3][i].TeamA.ChildY
 		xb := graph[LayerCount-3][i].TeamB.ChildX
@@ -147,5 +147,19 @@ func UpdateGraph(graph [][]Match) [][]Match {
 		}
 	}
 
+	return graph
+}
+
+// RegisterMatchTime 競技時間を登録する
+func RegisterMatchTime(graph [][]Match, times []Time) [][]Match {
+	for idx, time := range times {
+		for i := 0; i < len(graph)-1; i++ {
+			for j := 0; j < len(graph[i]); j++ {
+				if graph[i][j].MatchNum == idx+1 {
+					graph[i][j].Time = time
+				}
+			}
+		}
+	}
 	return graph
 }
