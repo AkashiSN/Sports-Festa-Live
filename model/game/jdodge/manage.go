@@ -1,15 +1,15 @@
 package jdodge
 
 import (
-	"github.com/AkashiSN/Sports-Festa-Live/model/matche"
+	"github.com/AkashiSN/Sports-Festa-Live/model/match"
 )
 
 var (
-	jdodge matche.Manager
+	jdodge match.Manager
 )
 
-// InitMatche 試合の準備を行う
-func InitMatche(teams []string, times []matche.MatcheTime) {
-	jdodge.Matches = matche.InitGraph(teams)
-	jdodge.Matches = matche.UpdateGraph(jdodge.Matches)
+// InitMatch 試合の準備を行う
+func InitMatch(teams []string, times []match.MatchTime) {
+	jdodge.Matchs = match.InitGraph(teams)
+	jdodge.Matchs = match.UpdateGraph(jdodge.Matchs)
 }

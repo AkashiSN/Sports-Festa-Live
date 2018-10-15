@@ -8,7 +8,7 @@ import (
 	"syscall"
 
 	"github.com/AkashiSN/Sports-Festa-Live/model/game"
-	"github.com/AkashiSN/Sports-Festa-Live/model/matche"
+	"github.com/AkashiSN/Sports-Festa-Live/model/match"
 	"github.com/AkashiSN/Sports-Festa-Live/model/team"
 )
 
@@ -22,8 +22,8 @@ func main() {
 	}
 
 	team := team.LoadTeam()
-	time := matche.LoadTime()
-	game.InitMatche(team, time)
+	time := match.LoadTime()
+	game.InitMatch(team, time)
 
 	quit := make(chan int)
 	go catchSignal(quit)

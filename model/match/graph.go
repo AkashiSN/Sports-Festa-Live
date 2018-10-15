@@ -1,24 +1,24 @@
-package matche
+package match
 
 import (
 	"math"
 )
 
 // InitGraph 正規グラフを作成する
-func InitGraph(teams []string) [][]Matche {
+func InitGraph(teams []string) [][]Match {
 	// 正規グラフを作成する
 	LayerCount := int(math.Ceil(math.Log2(float64(len(teams)))))
-	graph := make([][]Matche, LayerCount)
+	graph := make([][]Match, LayerCount)
 	for i := 0; i < LayerCount; i++ {
-		graph[i] = make([]Matche, int(math.Pow(2, float64(i))))
+		graph[i] = make([]Match, int(math.Pow(2, float64(i))))
 	}
 
 	// 試合番号を振る
-	matcheNum := 0
+	matchNum := 0
 	for i := LayerCount - 1; i >= 0; i-- {
 		for j := 0; j < int(math.Pow(2, float64(i))); j++ {
-			graph[i][j].MatcheNum = matcheNum
-			matcheNum++
+			graph[i][j].MatchNum = matchNum
+			matchNum++
 		}
 	}
 
@@ -45,7 +45,7 @@ func InitGraph(teams []string) [][]Matche {
 }
 
 // UpdateGraph グラフの再計算を行う
-func UpdateGraph(graph [][]Matche) [][]Matche {
+func UpdateGraph(graph [][]Match) [][]Match {
 	for i := 0; i < len(graph)-1; i++ {
 		for j := 0; j < len(graph[i]); j++ {
 			xa := graph[i][j].TeamA.ChildX

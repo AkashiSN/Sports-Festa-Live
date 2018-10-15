@@ -1,15 +1,15 @@
 package tennis
 
 import (
-	"github.com/AkashiSN/Sports-Festa-Live/model/matche"
+	"github.com/AkashiSN/Sports-Festa-Live/model/match"
 )
 
 var (
-	tennis matche.Manager
+	tennis match.Manager
 )
 
-// InitMatche 試合の準備を行う
-func InitMatche(teams []string, times []matche.MatcheTime) {
-	tennis.Matches = matche.InitGraph(teams)
-	tennis.Matches = matche.UpdateGraph(tennis.Matches)
+// InitMatch 試合の準備を行う
+func InitMatch(teams []string, times []match.MatchTime) {
+	tennis.Matchs = match.InitGraph(teams)
+	tennis.Matchs = match.UpdateGraph(tennis.Matchs)
 }

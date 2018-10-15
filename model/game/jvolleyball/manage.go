@@ -1,15 +1,15 @@
 package jvolleyball
 
 import (
-	"github.com/AkashiSN/Sports-Festa-Live/model/matche"
+	"github.com/AkashiSN/Sports-Festa-Live/model/match"
 )
 
 var (
-	jvolleyball matche.Manager
+	jvolleyball match.Manager
 )
 
-// InitMatche 試合の準備を行う
-func InitMatche(teams []string, times []matche.MatcheTime) {
-	jvolleyball.Matches = matche.InitGraph(teams)
-	jvolleyball.Matches = matche.UpdateGraph(jvolleyball.Matches)
+// InitMatch 試合の準備を行う
+func InitMatch(teams []string, times []match.MatchTime) {
+	jvolleyball.Matchs = match.InitGraph(teams)
+	jvolleyball.Matchs = match.UpdateGraph(jvolleyball.Matchs)
 }

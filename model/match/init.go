@@ -1,4 +1,4 @@
-package matche
+package match
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 
 // LoadTime 競技時間を読み込む
 func LoadTime() Time {
-	bytes, err := ioutil.ReadFile("conf/matche.json")
+	bytes, err := ioutil.ReadFile("conf/match.json")
 	if err != nil {
 		log.Fatal(err)
 	}
