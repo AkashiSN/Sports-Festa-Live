@@ -9,7 +9,7 @@ var (
 )
 
 // InitMatche 試合の準備を行う
-func InitMatche(teams []string) {
+func InitMatche(teams []string, times []matche.MatcheTime) {
 	basketball.Matches = matche.InitGraph(teams)
 	basketball.Matches = matche.UpdateGraph(basketball.Matches)
 }
