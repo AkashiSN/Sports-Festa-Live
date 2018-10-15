@@ -10,15 +10,15 @@ func InitGraph(teams []string) [][]Match {
 	LayerCount := int(math.Ceil(math.Log2(float64(len(teams)))))
 	graph := make([][]Match, LayerCount)
 	for i := 0; i < LayerCount; i++ {
-		graph[i] = make([]Match, int(math.Pow(2, float64(i))))
+		graph[i] = make([]Match, int(math.Pow(2, float64(i+1))))
 	}
 
-	// 試合番号を振る
-	matchNum := 0
+	// インデックスを振る
+	idx := 0
 	for i := LayerCount - 1; i >= 0; i-- {
 		for j := 0; j < int(math.Pow(2, float64(i))); j++ {
-			graph[i][j].MatchNum = matchNum
-			matchNum++
+			graph[i][j].Idx = idx
+			idx++
 		}
 	}
 
@@ -41,6 +41,48 @@ func InitGraph(teams []string) [][]Match {
 		}
 		graph[LayerCount-1][j].Winner = teams[j]
 	}
+
+	// 試合番号を振る
+	matchCount := 0
+	// トーナメント表の第1層について
+	for i := 0; i < int(math.Pow(2, float64(LayerCount))); i += 4 {
+		for j := i; j < i+3; j++ {
+			if teams[j] == "" && teams[j+1] == "" {
+				graph[LayerCount-1][i].MatchNum = matchCount
+				matchCount++
+			}
+			if j != i+1 && teams[j] != "" && teams[j+1] != "" {
+				graph[LayerCount-1][i].MatchNum = matchCount
+				matchCount++
+			}
+		}
+	}
+	// トーナメント表の第2層について
+	count := 0
+	for i := 0; i < int(math.Pow(2, float64(LayerCount))); i += 4 {
+		if (teams[i+1] == "") != (teams[i+2] == "") {
+			if teams[i+1] == "" {
+				graph[LayerCount-2][count].MatchNum = matchCount
+				matchCount++
+			}
+			if teams[i+2] == "" {
+				graph[LayerCount-2][count].MatchNum = matchCount
+				matchCount++
+			}
+		} else if !(teams[i+1] == "" && teams[i+2] == "") {
+			graph[LayerCount-2][count].MatchNum = matchCount
+			matchCount++
+		}
+		count++
+	}
+	// トーナメント表のそれ以上の層について
+	for i := LayerCount - 4; i >= 0; i-- {
+		for j := 0; j < int(math.Pow(2, float64(i))); j++ {
+			graph[i][j].MatchNum = matchCount
+			matchCount++
+		}
+	}
+
 	return graph
 }
 

@@ -1,7 +1,7 @@
 package team
 
-// Team 各試合のチームの構造体
-type Team struct {
+// Teams 各試合のチームの構造体
+type Teams struct {
 	Dodge       []string `json:"dodge"`
 	Basketball  []string `json:"basketball"`
 	Badminton   []string `json:"badminton"`

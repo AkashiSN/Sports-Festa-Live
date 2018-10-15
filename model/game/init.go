@@ -15,7 +15,7 @@ import (
 )
 
 // InitMatch 試合の準備を行う
-func InitMatch(team team.Team, time match.Time) {
+func InitMatch(team team.Teams, time match.Times) {
 	badminton.InitMatch(team.Badminton, time.Badminton)
 	basketball.InitMatch(team.Basketball, time.Basketball)
 	dodge.InitMatch(team.Dodge, time.Dodge)

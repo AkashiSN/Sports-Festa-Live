@@ -7,12 +7,12 @@ import (
 )
 
 // LoadTeam チーム情報を読み込む
-func LoadTeam() Team {
+func LoadTeam() Teams {
 	bytes, err := ioutil.ReadFile("conf/team.json")
 	if err != nil {
 		log.Fatal(err)
 	}
-	var team Team
+	var team Teams
 	if err := json.Unmarshal(bytes, &team); err != nil {
 		log.Fatal(err)
 	}
