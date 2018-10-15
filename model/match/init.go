@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"strings"
+	"time"
 )
 
 // LoadTime 競技時間を読み込む
@@ -18,6 +20,17 @@ func LoadTime() Times {
 		log.Fatal(err)
 	}
 	return time
+}
+
+// UnmarshalJSON 指定したフォーマットで時刻をパースする
+func (ct *customTime) UnmarshalJSON(b []byte) (err error) {
+	s := strings.Trim(string(b), "\"")
+	if s == "null" {
+		ct.Time = time.Time{}
+		return
+	}
+	ct.Time, err = time.Parse("2006/01/02 15:04", s)
+	return
 }
 
 // DebugDump デバックように出力する

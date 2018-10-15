@@ -1,9 +1,18 @@
 package match
 
+import (
+	"time"
+)
+
+// customTime 独自のTime型
+type customTime struct {
+	time.Time
+}
+
 // Time 各競技の開始時刻と終了時刻の構造体
 type Time struct {
-	StartTime string `json:"start"`
-	EndTime   string `json:"end"`
+	StartTime customTime `json:"start"`
+	EndTime   customTime `json:"end"`
 }
 
 // Team チームの構造体
