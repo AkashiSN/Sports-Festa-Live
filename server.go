@@ -26,7 +26,10 @@ type Route struct {
 
 // APIのルーティングの指定
 var routeAPI = []Route{
-	{PUT, "/api/game", view.GetGame},
+	//{GET, "/api/game", view.GetGame},
+	{GET, "/api/game/badminton", view.GetBadminton},
+	{GET, "/api/game/badminton/:matchNum", view.GetBadminton},
+	//{PUT, "/api/game/badminton/:matchNum", view.SetBadminton},
 }
 
 // corsで許可するアドレス

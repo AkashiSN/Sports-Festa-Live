@@ -1,18 +1,15 @@
 package match
 
-import (
-	"time"
-)
-
-// customTime 独自のTime型
-type customTime struct {
-	time.Time
-}
-
 // Time 各競技の開始時刻と終了時刻の構造体
 type Time struct {
-	StartTime customTime `json:"start"`
-	EndTime   customTime `json:"end"`
+	StartTime string `json:"start"`
+	EndTime   string `json:"end"`
+}
+
+// NumIdx 試合番号から[][]Matchへのインデクスの構造体
+type NumIdx struct {
+	X int
+	Y int
 }
 
 // Team チームの構造体
@@ -40,12 +37,14 @@ type Manager struct {
 	CurrentLayer int
 
 	InCourt struct {
-		CourtA string
-		CourtB string
+		CourtA    Match
+		CourtB    Match
+		MatchNums []int
 	}
 	Queue struct {
-		CourtA string
-		CourtB string
+		CourtA    Match
+		CourtB    Match
+		MatchNums []int
 	}
 }
 

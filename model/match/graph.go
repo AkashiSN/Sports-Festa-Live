@@ -5,7 +5,10 @@ import (
 )
 
 // InitGraph 正規グラフを作成する
-func InitGraph(teams []string) [][]Match {
+func InitGraph(teams []string) ([][]Match, []NumIdx) {
+
+	var numsIdx []NumIdx
+
 	// 正規グラフを作成する
 	LayerCount := int(math.Ceil(math.Log2(float64(len(teams))))) + 1
 	graph := make([][]Match, LayerCount)
@@ -48,10 +51,12 @@ func InitGraph(teams []string) [][]Match {
 			if teams[j] == "" && teams[j+1] == "" {
 				graph[LayerCount-2][j/2].MatchNum = matchCount
 				graph[LayerCount-2][j/2+1].MatchNum = matchCount
+				numsIdx = append(numsIdx, NumIdx{X: j / 2, Y: LayerCount - 2})
 				matchCount++
 			}
 			if j != i+1 && teams[j] != "" && teams[j+1] != "" {
 				graph[LayerCount-2][j/2].MatchNum = matchCount
+				numsIdx = append(numsIdx, NumIdx{X: j / 2, Y: LayerCount - 2})
 				matchCount++
 			}
 		}
@@ -62,14 +67,17 @@ func InitGraph(teams []string) [][]Match {
 		if (teams[i+1] == "") != (teams[i+2] == "") {
 			if teams[i+1] == "" {
 				graph[LayerCount-3][count].MatchNum = matchCount
+				numsIdx = append(numsIdx, NumIdx{X: count, Y: LayerCount - 3})
 				matchCount++
 			}
 			if teams[i+2] == "" {
 				graph[LayerCount-3][count].MatchNum = matchCount
+				numsIdx = append(numsIdx, NumIdx{X: count, Y: LayerCount - 3})
 				matchCount++
 			}
 		} else if !(teams[i+1] == "" && teams[i+2] == "") {
 			graph[LayerCount-3][count].MatchNum = matchCount
+			numsIdx = append(numsIdx, NumIdx{X: count, Y: LayerCount - 3})
 			matchCount++
 		}
 		count++
@@ -78,6 +86,7 @@ func InitGraph(teams []string) [][]Match {
 	for i := LayerCount - 4; i >= 0; i-- {
 		for j := 0; j < int(math.Pow(2, float64(i))); j++ {
 			graph[i][j].MatchNum = matchCount
+			numsIdx = append(numsIdx, NumIdx{X: j, Y: i})
 			matchCount++
 		}
 	}
@@ -115,7 +124,7 @@ func InitGraph(teams []string) [][]Match {
 
 	}
 
-	return graph
+	return graph, numsIdx
 }
 
 // UpdateGraph グラフの再計算を行う
@@ -126,12 +135,12 @@ func UpdateGraph(graph [][]Match) [][]Match {
 			ya := graph[i][j].TeamA.ChildY
 			xb := graph[i][j].TeamB.ChildX
 			yb := graph[i][j].TeamB.ChildY
-			if graph[ya][xa].MatchNum == 0 {
+			if i == len(graph)-4 && graph[ya][xa].MatchNum == 0 {
 				xa1 := graph[ya][xa].TeamA.ChildX
 				ya1 := graph[ya][xa].TeamA.ChildY
 				xa, ya = xa1, ya1
 			}
-			if graph[yb][xb].MatchNum == 0 {
+			if i == len(graph)-4 && graph[yb][xb].MatchNum == 0 {
 				xb1 := graph[yb][xb].TeamB.ChildX
 				yb1 := graph[yb][xb].TeamB.ChildY
 				xb, yb = xb1, yb1
