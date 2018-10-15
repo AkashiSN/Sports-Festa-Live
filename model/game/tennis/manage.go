@@ -10,6 +10,6 @@ var (
 
 // InitMatch 試合の準備を行う
 func InitMatch(teams []string, times []match.MatchTime) {
-	tennis.Matchs = match.InitGraph(teams)
-	tennis.Matchs = match.UpdateGraph(tennis.Matchs)
+	tennis.Matches = match.InitGraph(teams)
+	tennis.Matches = match.UpdateGraph(tennis.Matches)
 }

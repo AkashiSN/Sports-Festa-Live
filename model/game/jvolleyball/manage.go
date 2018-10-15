@@ -10,6 +10,6 @@ var (
 
 // InitMatch 試合の準備を行う
 func InitMatch(teams []string, times []match.MatchTime) {
-	jvolleyball.Matchs = match.InitGraph(teams)
-	jvolleyball.Matchs = match.UpdateGraph(jvolleyball.Matchs)
+	jvolleyball.Matches = match.InitGraph(teams)
+	jvolleyball.Matches = match.UpdateGraph(jvolleyball.Matches)
 }

@@ -25,7 +25,7 @@ type Match struct {
 
 // Manager 各競技ごとの管理をする構造体
 type Manager struct {
-	Matchs       [][]Match
+	Matches      [][]Match
 	Layer        []int
 	CurrentLayer int
 
